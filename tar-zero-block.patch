@@ -1,0 +1,25 @@
+--- tar-1.14/src/list.c.orig	2004-05-10 13:49:09.000000000 +0200
++++ tar-1.14/src/list.c	2004-09-08 18:48:34.473169312 +0200
+@@ -138,6 +138,14 @@
+ 
+ 	  if (!ignore_zeros_option)
+ 	    {
++		break;
++
++      /*
++       * According to POSIX tar specs, this is wrong, but on the web
++       * there are some tar specs that can trigger this, and some tar
++       * implementations create tars according to that spec...
++       *
++
+ 	      char buf[UINTMAX_STRSIZE_BOUND];
+ 
+ 	      status = read_header (false);
+@@ -146,6 +154,7 @@
+ 	      WARN ((0, 0, _("A lone zero block at %s"),
+ 		     STRINGIFY_BIGINT (current_block_ordinal (), buf)));
+ 	      break;
++       */
+ 	    }
+ 	  status = prev_status;
+ 	  continue;

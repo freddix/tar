@@ -1,12 +1,12 @@
 Summary:	A GNU file archiving program
 Name:		tar
-Version:	1.26
-Release:	3
+Version:	1.27
+Release:	1
 Epoch:		1
 License:	GPL
 Group:		Applications/Archiving
 Source0:	ftp://ftp.gnu.org/gnu/tar/%{name}-%{version}.tar.xz
-# Source0-md5:	0ced6f20b9fa1bea588005b5ad4b52c1
+# Source0-md5:	3484fc42b7a82b82f2305b2971aa0e56
 Patch0:		%{name}-zero-block.patch
 URL:		http://www.gnu.org/software/tar/tar.html
 BuildRequires:	autoconf

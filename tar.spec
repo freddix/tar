@@ -1,14 +1,16 @@
+# based on PLD Linux spec git://git.pld-linux.org/packages/tar.git
 Summary:	A GNU file archiving program
 Name:		tar
-Version:	1.27.1
-Release:	1
+Version:	1.28
+Release:	2
 Epoch:		1
 License:	GPL
 Group:		Applications/Archiving
 Source0:	ftp://ftp.gnu.org/gnu/tar/%{name}-%{version}.tar.xz
-# Source0-md5:	e0382a4064e09a4943f3adeff1435978
+# Source0-md5:	49b6306167724fe48f419a33a5beb857
 Patch0:		%{name}-zero-block.patch
 URL:		http://www.gnu.org/software/tar/tar.html
+BuildRequires:	acl-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bison
@@ -17,6 +19,8 @@ BuildRequires:	help2man
 BuildRequires:	sed
 BuildRequires:	texinfo
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+
+%define		_libexecdir	%{_libdir}/tar
 
 %description
 The GNU tar program saves many files together into one archive and can
@@ -34,8 +38,6 @@ the rmt package.
 %prep
 %setup -q
 %patch0 -p1
-
-sed -i "/gets is a security hole/d" gnu/stdio.in.h
 
 %build
 %{__gettextize}
@@ -76,6 +78,9 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc README NEWS
 %attr(755,root,root) %{_bindir}/*
+%dir %{_libexecdir}
+%attr(755,root,root) %{_libexecdir}/rmt
 %{_infodir}/tar.info*
 %{_mandir}/man1/*
+%{_mandir}/man8/rmt.8*
 
